@@ -1,0 +1,17 @@
+table{
+  width: 60%;
+  font-family: "Palatino Linotype", "Times New Roman", "Serif";
+}
+
+td{
+  width: 20%;
+  padding: 5px, 5px, 5px, 5px;
+}
+
+th{
+  background-color: blue;
+}
+
+tr:nth-child(even){
+background-color: lightblue;
+}
