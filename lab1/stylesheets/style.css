@@ -1,6 +1,3 @@
-head{
-
-}
 
 h1{
  color: grey;
@@ -11,9 +8,17 @@ body{
 }
 
 td{
-  color: grey;
+  padding: 10px;
 }
 
 select{
   color: grey;
+}
+table{
+  border-collapse: collapse;
+
+}
+tr:nth-child(even){
+  color: white;
+  background-color: darkgray;
 }

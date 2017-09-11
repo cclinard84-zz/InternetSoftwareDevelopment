@@ -1,11 +1,16 @@
 table{
   width: 60%;
+  border-collapse: collapse;
   font-family: "Palatino Linotype", "Times New Roman", "Serif";
+}
+
+th{
+  text-align: left;
 }
 
 td{
   width: 20%;
-  padding: 5px, 5px, 5px, 5px;
+  padding: 5px;
 }
 
 th{
@@ -13,5 +18,5 @@ th{
 }
 
 tr:nth-child(even){
-background-color: lightblue;
+  background-color: lightblue;
 }
