@@ -1,4 +1,8 @@
-
+/* Filename: style.css
+    Author: Matt Clinard
+    Date: 8/30/2017
+    Description: This stylesheet supplements survey.html
+*/
 h1{
  color: grey;
 }
@@ -13,12 +17,31 @@ td{
 
 select{
   color: grey;
+  cursor: pointer;
 }
 table{
   border-collapse: collapse;
+  width: 50%;
 
 }
 tr:nth-child(even){
   color: white;
   background-color: darkgray;
 }
+
+.button {
+    background-color: lightgrey; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    hover: grey;
+}
+
+.button:hover {background-color: grey}
