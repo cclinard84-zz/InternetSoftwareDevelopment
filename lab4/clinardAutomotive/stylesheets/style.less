@@ -1,0 +1,66 @@
+/*Filename: style.less
+    Author: Matt Clinard
+    Date: 9/20/2017
+    Description: This page is supplements survey.html
+*/
+
+
+@color_gray: #D4D4D4;
+@color_white: #FFFFFF;
+@color_darkGray: #9C9C9C;
+@color_lightGray: #D9D9D9;
+
+/* Style the background of the page*/
+.background_mixin{
+background: linear-gradient(to left bottom, @color_white 45%, @color_darkGray);
+}
+
+/* Mixin to style the button with added background_mixin so the gradient is the same*/
+.button_mixin{
+  .background_mixin;
+    border: none;
+    color: @color_darkGray;
+    padding: 5px 12px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+h1{
+  color: @color_darkGray;
+}
+
+body{
+  color: @color_darkGray;
+  .background_mixin;
+}
+
+td{
+  padding: 10px;
+}
+
+select{
+  color: @color_darkGray;
+  cursor: pointer;
+}
+
+table{
+  border-collapse: collapse;
+  width: 75%;
+}
+
+tr:nth-child(even){
+  color: @color_white;
+  background-color: @color_darkGray;
+}
+
+.button{
+  .button_mixin;
+}
+
+.button:hover {
+  color:@color_lightGray;
+}
