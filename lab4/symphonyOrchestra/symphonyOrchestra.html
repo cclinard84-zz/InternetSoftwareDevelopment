@@ -1,0 +1,106 @@
+<!-- File: symphonyOrchestra.html
+       Author: Matt Clinard
+      Date: 9/30/2017
+      Purpose: This is the homepage for the Mascot Symphony Orchestra.
+                      This page utilizes a template from w3schools and cropped images pulled
+                      from pinterest.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Mascot Symphony Orchestra</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    /* Aligns text inside of an unordered list */
+    ul{
+      text-align: left;
+      padding-left: 25%;
+    }
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+
+  .carousel-inner img {
+      width: 100%; /* Set width to 100% */
+      margin: auto;
+      min-height:200px;
+  }
+
+  /* Hide the carousel text when the screen is less than 600 pixels wide */
+  @media (max-width: 600px) {
+    .carousel-caption {
+      display: none;
+    }
+  }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="symphonyOrchestra.html">MSO</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Lorem</a></li>
+        <li><a href="#">Ipsum</a></li>
+        <li><a href="#">Vasflam</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Using this class a wrapper for a responsive banner image -->
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner" role="listbox">
+        <img src="images/flute.jpg" alt="Image">
+    </div>
+</div>
+
+<div class="container text-center">
+  <h3>Mascot Symphony Orchestra</h3><br>
+  <div class="row">
+    <div class="col-sm-4">
+      <img src="images/curve.jpg" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-4">
+      <img src="images/quote.jpg" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-4">
+      <div class="well" align-text="center">
+       <p><b><u>Current Set List</b></u> </p>
+       <p>
+         <ul>
+           <li>Hayden's Trumpet Concerto</li>
+           <li>Nigel Stanford's Automatica</li>
+           <li>Ronald Jenkee's Guitar Sound</li>
+         </ul>
+       </p>
+      </div>
+      <div class="well">
+       <p><b><u>Next Performance: Dec. 15 2017</b></u> </p>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+</body>
+</html>
