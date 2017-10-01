@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Bootstrap Example</title>
+  <title>studiBuddy-Home</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -9,47 +10,123 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
     /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
-    .row.content {height: 1500px}
+
+    .row.content {
+      height: 1500px
+    }
 
     /* Set gray background color and 100% height */
+
     .sidenav {
-      background-color: #f1f1f1;
+      background-color: #1f6fef;
       height: 100%;
     }
 
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #555;
+    /* Set background color and white text */
+
+    body {
+      background-color: #1f6fef;
       color: white;
-      padding: 15px;
+    }
+
+    /* All links will be white with no decoration*/
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+
+    /* All link hover text will be white with no decoration*/
+
+    a:hover {
+      color: white;
+      text-decoration: none;
+    }
+
+    /*set panel text to studiBuddy blue*/
+
+    .panel {
+      color: #1f6fef;
+    }
+
+    /*set background colors of buttons to studiBuddy blue and text to white*/
+
+    .btn {
+      background-color: #1f6fef;
+      color: white;
+    }
+
+    /*set background color to white and text to studiBuddy blue on hover*/
+
+    .btn:hover {
+      background-color: white;
+      color: #1f6fef;
     }
 
     /* On small screens, set height to 'auto' for sidenav and grid */
+
     @media screen and (max-width: 767px) {
       .sidenav {
         height: auto;
         padding: 15px;
       }
-      .row.content {height: auto;}
+      .row.content {
+        height: auto;
+      }
     }
   </style>
 </head>
+
 <body>
+  <div class="container-fluid">
+    <div class="row content">
+      <div class="col-md-2 sidenav">
+        <a href="index.html"><h4>studiBuddy</h4></a>
+      </div>
+      <form class="form-inline">
+        <br>
+        <div class="col-md-2 col-md-offset-4 input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input id="username" type="text" class="form-control" name="userName" placeholder="username">
+        </div>
+        <div class=" col-md-2 input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+          <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+        </div>
+        <button type="button" class="btn btn-default btn-md">Login</button>
+        <button type="button" class="btn btn-default btn-md">Sign Up</button>
+      </form>
 
-<div class="container-fluid">
-  <div class="row content">
-    <div class="col-sm-3 sidenav">
-      <h4>studiBuddy</h4>
-    </div>=
-    <div class="col-sm-9">
-      <!-- Put inlaid news well here -->
+      <div class="col-md-9">
+        <!-- Put inlaid news well here -->
+        <br>
+        <div class="well well-md">
+          <div class="panel panel-heading">
+            <h1>Welcome</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eleifend lacus in dapibus varius. Nullam imperdiet arcu orci, sit amet dictum purus viverra id. Suspendisse consectetur libero erat, quis porta dolor vulputate eget. Maecenas
+              risus augue, dignissim ac nisi id, laoreet ultricies justo. Ut vitae lorem mi. Vivamus vitae bibendum ante, eu efficitur metus. Nulla lacinia posuere imperdiet. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+              mus. Duis pellentesque, justo nec ultricies hendrerit, felis sem convallis diam, sed laoreet neque sapien in neque. Integer non egestas dolor, in maximus nunc. Integer dictum justo accumsan massa gravida, a varius neque hendrerit. Mauris
+              enim mauris, egestas ac consectetur scelerisque, semper at mauris. Sed pretium urna id tincidunt ornare. Mauris sed pharetra neque. Ut dolor dui, tempor vitae augue id, feugiat convallis diam.</p>
+          </div>
+          <br>
+          <div class="panel panel-heading">
+            <h1>Some News</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eleifend lacus in dapibus varius. Nullam imperdiet arcu orci, sit amet dictum purus viverra id. Suspendisse consectetur libero erat, quis porta dolor vulputate eget. Maecenas
+              risus augue, dignissim ac nisi id, laoreet ultricies justo. Ut vitae lorem mi. Vivamus vitae bibendum ante, eu efficitur metus. Nulla lacinia posuere imperdiet. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+              mus. Duis pellentesque, justo nec ultricies hendrerit, felis sem convallis diam, sed laoreet neque sapien in neque. Integer non egestas dolor, in maximus nunc. Integer dictum justo accumsan massa gravida, a varius neque hendrerit. Mauris
+              enim mauris, egestas ac consectetur scelerisque, semper at mauris. Sed pretium urna id tincidunt ornare. Mauris sed pharetra neque. Ut dolor dui, tempor vitae augue id, feugiat convallis diam.</p>
+          </div>
+          <br>
+          <div class="panel panel-heading">
+            <h1>Some More News</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eleifend lacus in dapibus varius. Nullam imperdiet arcu orci, sit amet dictum purus viverra id. Suspendisse consectetur libero erat, quis porta dolor vulputate eget. Maecenas
+              risus augue, dignissim ac nisi id, laoreet ultricies justo. Ut vitae lorem mi. Vivamus vitae bibendum ante, eu efficitur metus. Nulla lacinia posuere imperdiet. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+              mus. Duis pellentesque, justo nec ultricies hendrerit, felis sem convallis diam, sed laoreet neque sapien in neque. Integer non egestas dolor, in maximus nunc. Integer dictum justo accumsan massa gravida, a varius neque hendrerit. Mauris
+              enim mauris, egestas ac consectetur scelerisque, semper at mauris. Sed pretium urna id tincidunt ornare. Mauris sed pharetra neque. Ut dolor dui, tempor vitae augue id, feugiat convallis diam.</p>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-
-<footer class="container-fluid">
-  <p>Footer Text</p>
-</footer>
-
 </body>
+
 </html>
