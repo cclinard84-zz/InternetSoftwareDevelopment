@@ -1,1 +1,3 @@
-This repo contains labs for the class titled `Internet Software Development`.
+# Internet Software Development
+
+This repo contains all source code for labs for my Internet Software Development class
