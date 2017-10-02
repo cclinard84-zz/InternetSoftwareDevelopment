@@ -65,9 +65,9 @@
 
     /* On small screens, set height to 'auto' for sidenav and grid */
 
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 1200px) {
       .sidenav {
-        height: auto;
+        height: 250px;
         padding: 15px;
       }
       .row.content {
@@ -80,17 +80,17 @@
 <body>
   <div class="container-fluid">
     <div class="row content">
-      <div class="col-md-2 sidenav">
+      <div class="col-sm-2 sidenav">
         <br>
         <a href="index.html"><img src="images/studiBuddyLogo.png" class="img-responsive"></a></img>
       </div>
       <form class="form-inline">
         <br>
-        <div class="col-md-2 col-md-offset-4 input-group">
+        <div class="col-sm-2 col-sm-offset-4 input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
           <input id="username" type="text" class="form-control" name="userName" placeholder="Username">
         </div>
-        <div class=" col-md-2 input-group">
+        <div class=" col-sm-2 input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
           <input id="password" type="password" class="form-control" name="password" placeholder="Password">
         </div>
