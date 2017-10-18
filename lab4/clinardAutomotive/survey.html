@@ -5,6 +5,7 @@
 -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Clinard Chevrolet</title>
   <meta charset="utf-8">
@@ -14,20 +15,21 @@
   <script src="less.js" type="text/javascript"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <style>
 
+  <style>
     /* Remove the navbar's default margin-bottom and rounded borders */
+
     .navbar {
       margin-bottom: 5;
       border-radius: 0;
     }
-
     /* No Underline when hovering over a link*/
-    a:hover{
+
+    a:hover {
       text-decoration: none;
     }
-
     /* Set black background color, white text and some padding */
+
     footer {
       background-color: #333333;
       font-family: "Arial", Helvetica, sans-serif;
@@ -35,179 +37,208 @@
       padding: 15px;
       height: 50%;
     }
-
   </style>
 </head>
+
 <body>
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="clinardAutomotive.html"><img src="images/chevy.png" style=width:80px;height:30px; align="middle"></img></a>
+        <a class="navbar-brand" href="clinardAutomotive.html"><img src="images/chevy.png" style=width:80px;height:30px; align="middle"></img></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li><a href="pre-owned.html">Pre-Owned</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="survey.html">Online Survey</a></li>
+        </ul>
+        <div class="col-xs-4 col-sm-3">
+          <form class="navbar-form" role="search">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search" name="q">
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li><a href="pre-owned.html">Pre-Owned</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="survey.html">Online Survey</a></li>
-      </ul>
-      <div class="col-xs-4 col-sm-3">
-        <form class="navbar-form" role="search">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search" name="q">
-          </div>
-        </form>
+  </nav>
+
+  <div class="container-fluid text-center">
+    <div class="row content">
+      <div class="col-lg-offset-3 col-lg-6 text-left">
+        <table style width="100" align="center">
+          <tr>
+            <td align="center">
+              <h1>Clinard Automotive Customer Survey</h1>
+            </td>
+          </tr>
+        </table>
+
+        <br>
+        <table style width="100%" align="center">
+          <tr>
+            <td align>On a scale of 1-10, how would you rate your experience with your sales associate?</td>
+            <td align><select name="satisfactionRating0" id="sr0">
+                <option value =""></option>
+                <option value ="1">1</option>
+                <option value ="2">2</option>
+                <option value ="3">3</option>
+                <option value ="4">4</option>
+                <option value ="5">5</option>
+                <option value ="6">6</option>
+                <option value ="7">7</option>
+                <option value ="8">8</option>
+                <option value ="9">9</option>
+                <option value ="10">10</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>On a scale of 1-10, how would you rate our selection of vehicles</td>
+            <td><select name="satisfactionRating1" id="sr1">
+              <option value =""></option>
+                <option value ="1">1</option>
+                <option value ="2">2</option>
+                <option value ="3">3</option>
+                <option value ="4">4</option>
+                <option value ="5">5</option>
+                <option value ="6">6</option>
+                <option value ="7">7</option>
+                <option value ="8">8</option>
+                <option value ="9">9</option>
+                <option value ="10">10</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>On a scale of 1-10, how likely would you shop with us again?</td>
+            <td><select name="satisfactionRating2" id="sr2">
+                <option value =""></option>
+                <option value ="1">1</option>
+                <option value ="2">2</option>
+                <option value ="3">3</option>
+                <option value ="4">4</option>
+                <option value ="5">5</option>
+                <option value ="6">6</option>
+                <option value ="7">7</option>
+                <option value ="8">8</option>
+                <option value ="9">9</option>
+                <option value ="10">10</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>On a scale of 1-10, how likely would you recommend us to a friend?</td>
+            <td><select name="satisfactionRating3" id="sr3">
+                <option value =""></option>
+                <option value ="1">1</option>
+                <option value ="2">2</option>
+                <option value ="3">3</option>
+                <option value ="4">4</option>
+                <option value ="5">5</option>
+                <option value ="6">6</option>
+                <option value ="7">7</option>
+                <option value ="8">8</option>
+                <option value ="9">9</option>
+                <option value ="10">10</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>On a scale of 1-10, how would you rate our finance department?</td>
+            <td><select name="satisfactionRating4" id="sr4">
+                <option value =""></option>
+                <option value ="1">1</option>
+                <option value ="2">2</option>
+                <option value ="3">3</option>
+                <option value ="4">4</option>
+                <option value ="5">5</option>
+                <option value ="6">6</option>
+                <option value ="7">7</option>
+                <option value ="8">8</option>
+                <option value ="9">9</option>
+                <option value ="10">10</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>On a scale of 1-10, how likely are you to finance your vehicle through us again?</td>
+            <td><select name="satisfactionRating5" id="sr5">
+              <option value =""></option>
+                <option value ="1">1</option>
+                <option value ="2">2</option>
+                <option value ="3">3</option>
+                <option value ="4">4</option>
+                <option value ="5">5</option>
+                <option value ="6">6</option>
+                <option value ="7">7</option>
+                <option value ="8">8</option>
+                <option value ="9">9</option>
+                <option value ="10">10</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>On a scale of 1-10, how likely are you to recommend our finance department to a friend?</td>
+            <td><select name="satisfactionRating6" id="sr6">
+              <option value =""></option>
+                <option value ="1">1</option>
+                <option value ="2">2</option>
+                <option value ="3">3</option>
+                <option value ="4">4</option>
+                <option value ="5">5</option>
+                <option value ="6">6</option>
+                <option value ="7">7</option>
+                <option value ="8">8</option>
+                <option value ="9">9</option>
+                <option value ="10">10</option>
+              </select>
+            </td>
+          </tr>
+        </table>
+        <table style align="center">
+          <tr>
+            <td align="right">
+              <button class="button buttonSubmit" onclick="validate(); ">Submit</button>
+              <p id="demo"></p>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
-</nav>
+  <script>
+    function validate() {
+      var truth = 1;
+      if (sr0.value == "" || sr1.value == "" || sr2.value == "" || sr3.value == "" || sr4.value == "" || sr5.value == "" || sr6.value == "") {
+        truth = 0;
+      }
+      if (truth == 0) {
+        alert("Not all fields have valid answers!");
+      } else {
+        sessionStorage.setItem("answerOne", sr0.value);
+        sessionStorage.setItem("answerTwo", sr1.value);
+        sessionStorage.setItem("answerThree", sr2.value);
+        sessionStorage.setItem("answerFour", sr3.value);
+        sessionStorage.setItem("answerFive", sr4.value);
+        sessionStorage.setItem("answerSix", sr5.value);
+        sessionStorage.setItem("answerSeven", sr6.value);
+        open("surveyThank.html");
+      }
+    }
+  </script>
 
-<div class="container-fluid text-center">
-  <div class="row content">
-    <div class="col-lg-offset-3 col-lg-6 text-left">
-      <table style width="100" align="center">
-        <tr>
-          <td align="center">
-            <h1>Clinard Automotive Customer Survey</h1>
-          </td>
-        </tr>
-      </table>
-
-      <br>
-      <table style width="100%" align="center">
-        <tr>
-          <td align>On a scale of 1-10, how would you rate your experience with your sales associate?</td>
-          <td align><select name="satisfactionRating0">
-                <option value ="1">1</option>
-                <option value ="2">2</option>
-                <option value ="3">3</option>
-                <option value ="4">4</option>
-                <option value ="5">5</option>
-                <option value ="6">6</option>
-                <option value ="7">7</option>
-                <option value ="8">8</option>
-                <option value ="9">9</option>
-                <option value ="10">10</option>
-              </select>
-            </td>
-        </tr>
-        <tr>
-          <td>On a scale of 1-10, how would you rate our selection of vehicles</td>
-          <td><select name="satisfactionRating1">
-                <option value ="1">1</option>
-                <option value ="2">2</option>
-                <option value ="3">3</option>
-                <option value ="4">4</option>
-                <option value ="5">5</option>
-                <option value ="6">6</option>
-                <option value ="7">7</option>
-                <option value ="8">8</option>
-                <option value ="9">9</option>
-                <option value ="10">10</option>
-              </select>
-            </td>
-        </tr>
-        <tr>
-          <td>On a scale of 1-10, how likely would you shop with us again?</td>
-          <td><select name="satisfactionRating2">
-                <option value ="1">1</option>
-                <option value ="2">2</option>
-                <option value ="3">3</option>
-                <option value ="4">4</option>
-                <option value ="5">5</option>
-                <option value ="6">6</option>
-                <option value ="7">7</option>
-                <option value ="8">8</option>
-                <option value ="9">9</option>
-                <option value ="10">10</option>
-              </select>
-            </td>
-        </tr>
-        <tr>
-          <td>On a scale of 1-10, how likely would you recommend us to a friend?</td>
-          <td><select name="satisfactionRating3">
-                <option value ="1">1</option>
-                <option value ="2">2</option>
-                <option value ="3">3</option>
-                <option value ="4">4</option>
-                <option value ="5">5</option>
-                <option value ="6">6</option>
-                <option value ="7">7</option>
-                <option value ="8">8</option>
-                <option value ="9">9</option>
-                <option value ="10">10</option>
-              </select>
-            </td>
-        </tr>
-        <tr>
-          <td>On a scale of 1-10, how would you rate our finance department?</td>
-          <td><select name="satisfactionRating4">
-                <option value ="1">1</option>
-                <option value ="2">2</option>
-                <option value ="3">3</option>
-                <option value ="4">4</option>
-                <option value ="5">5</option>
-                <option value ="6">6</option>
-                <option value ="7">7</option>
-                <option value ="8">8</option>
-                <option value ="9">9</option>
-                <option value ="10">10</option>
-              </select>
-            </td>
-        </tr>
-        <tr>
-          <td>On a scale of 1-10, how likely are you to finance your vehicle through us again?</td>
-          <td><select name="satisfactionRating5">
-                <option value ="1">1</option>
-                <option value ="2">2</option>
-                <option value ="3">3</option>
-                <option value ="4">4</option>
-                <option value ="5">5</option>
-                <option value ="6">6</option>
-                <option value ="7">7</option>
-                <option value ="8">8</option>
-                <option value ="9">9</option>
-                <option value ="10">10</option>
-              </select>
-            </td>
-        </tr>
-        <tr>
-          <td>On a scale of 1-10, how likely are you to recommend our finance department to a friend?</td>
-          <td><select name="satisfactionRating6">
-                <option value ="1">1</option>
-                <option value ="2">2</option>
-                <option value ="3">3</option>
-                <option value ="4">4</option>
-                <option value ="5">5</option>
-                <option value ="6">6</option>
-                <option value ="7">7</option>
-                <option value ="8">8</option>
-                <option value ="9">9</option>
-                <option value ="10">10</option>
-              </select>
-            </td>
-        </tr>
-      </table>
-      <table style align = "center">
-        <tr>
-          <td align = "right">
-            <button class="button buttonSubmit">Submit</button>
-          </td>
-        </tr>
-      </table>
-    </div>
-  </div>
-</div>
-
-<footer class="container-fluid text-center">
-  <h1><a href="clinardAutomotive.html" style=" color:white">Clinard Chevrolet</a></h1>
-  <br>1234 Rutledge Pk Mascot, TN 37806
-</footer>
+  <footer class="container-fluid text-center">
+    <h1><a href="clinardAutomotive.html" style=" color:white">Clinard Chevrolet</a></h1>
+    <br>1234 Rutledge Pk Mascot, TN 37806
+  </footer>
 
 </body>
+
 </html>
