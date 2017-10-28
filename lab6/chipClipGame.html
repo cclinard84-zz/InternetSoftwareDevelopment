@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    function disableButtons() {
+      $('#increaseMarketingLevel').prop('disabled', true);
+      calculatePublicDemand();
+    }
+  </script>
+
+  <title>Matt's Chip Clip Game</title>
+  <style>
+    hr {
+      display: block;
+      height: 1px;
+      border: 0;
+      border-top: 1px solid #ccc;
+      margin: 1em 0;
+      padding: 0;
+    }
+  </style>
+  <script>
+  </script>
+</head>
+
+<body onload="disableButtons()">
+  <table>
+    <tr>
+      <td style="width:50%">
+        <br />
+        <h2>Chip Clips Made: <span class="chipClipCounter">0</span></h2>
+        <p />
+        <hr />
+        <button class="button" id="makeChipClip">Make Chip Clip</button>
+        <p />
+        <b>Resources</b>
+        <hr />Wire: <span class="wireRemaining">1000</span><br />
+
+        <p />Plastic: <span class="plasticRemaining">2000.0</span>
+        <p />
+
+        <p />Wire Price: $<span class="wirePrice"></span>5<br />
+        <button class="button" id="buyWire">Buy Wire</button>
+        <p />Plastic Price: $<span class="plasticPrice"></span>10<br />
+        <button class="button" id="buyPlastic">Buy Plastic</button>
+
+        <p />
+        <b>Money Management</b>
+        <hr />Available Funds: $<span class="availableFunds">0.00</span>
+        <p />
+        <span class="revenuePerSecond"></span><span class="revenuePerSecondTicker"></span>
+        <p /> Price Per Chip Clip: $<span class="pricePerChipClip">0.50</span><br />
+        <button class="button" id="lowerPricePerClip">Lower Price</button><button class="button" id="raisePricePerClip">Raise Price</button>
+        <p />
+        <span class="Unsold Inventory">Unsold Inventory: </span><span class="unsoldClips">0</span>
+        <p /> Public Demand: <span class="publicDemand"></span>%
+        <p /> Marketing Level: <span class="marketingLevel">1</span><br /> Cost: $ <span class="increaseMarketingCost">100.00</span>
+        <button class="button" id="increaseMarketingLevel">Marketing</button>
+
+
+      </td>
+      <td />
+    </tr>
+
+    <script>
+      function calculatePublicDemand() {
+        var marketingLevel = parseInt($('.marketingLevel').text());
+        var price = parseFloat($('.pricePerChipClip').text());
+        var marketing = (Math.pow(1.1, (marketingLevel)));
+        var demand = ((.8) * marketing / (price * 3));
+        demand = ((demand + (((demand / 100)))) * 100).toFixed(2);
+        $('.publicDemand').text(demand);
+      };
+
+      $('.availableFunds').change(function() {
+        var funds = parseFloat($('.availableFunds').text());
+        var marketingCost = parseFloat($('.increaseMarketingCost').text());
+        if (marketingCost > funds) {
+          $('#increaseMarketingLevel').prop('disabled', false);
+        } else {
+          $('#increaseMarketingLevel').prop('disabled', true);
+        }
+      });
+
+      $("#lowerPricePerClip").click(function() {
+        var price = parseFloat($('.pricePerChipClip').text())
+        if (price == .01) {
+          $("#lowerPricePerClip").prop('disabled', true);
+          return;
+        }
+        $('.pricePerChipClip').text((price - .01).toFixed(2));
+        calculatePublicDemand();
+      });
+
+      $("#raisePricePerClip").click(function() {
+        var price = parseFloat($('.pricePerChipClip').text())
+        $('.pricePerChipClip').text((price + .01).toFixed(2));
+        calculatePublicDemand();
+      });
+
+      $("#makeChipClip").click(function() {
+        var clipCount = parseInt($('.chipClipCounter').text());
+        var wire = parseInt($('.wireRemaining').text());
+        var plastic = parseFloat($('.plasticRemaining').text());
+        var unsoldClips = parseInt($('.unsoldClips').text());
+        if (wire != 0 && plastic != 0) {
+          $('.chipClipCounter').text(clipCount + 1);
+          $('.wireRemaining').text(wire - 1);
+          $('.plasticRemaining').text(plastic - 1.5);
+          $('.unsoldClips').text(unsoldClips + 1);
+        }
+      });
+
+      $("#buyRevenueTicker").click(function() {
+        $('.revenuePerSecond').text('Revenue Per Second: $');
+        $('.revenuePerSecondTicker').text('0.00');
+      });
+
+      $("#buyWire").click(function() {
+        var funds = parseFloat($('.availableFunds').text());
+        var wire = parseInt($('.wireRemaining').text());
+        if (funds >= wirePrice) {
+          $('.availableFunds').text(funds -= wirePrice);
+          $('.wireRemaining').text(wire + 1000);
+        }
+      });
+
+      $("buyPlastic").click(function() {
+        var funds = parseFloat($('.availableFunds').text());
+        var plastic = parseFloat($('.plasticRemaining').text());
+        if (funds >= plasticPrice) {
+          $('.availableFunds').text(funds -= wirePrice);
+          $('.plasticRemaining').text(plastic + 1000);
+        }
+      });
+
+      function setPrice(change) {
+        if (change == 2) {
+          $('.wirePrice').text(Math.floor(Math.random() * 10) + 1);
+          $('.plasticPrice').text(Math.floor(Math.random() * 15) + 1);
+        }
+      };
+
+      function sellClips(number) {
+        var unsoldClips = parseInt($('.unsoldClips').text());
+        var funds = parseFloat($('.availableFunds').text());
+        var transaction = (unsoldClips * getDemand() * .25);
+        var price = parseFloat($('.pricePerChipClip')).text;
+        var sellPrice = transaction * price;
+        if (unsoldClips > 0) {
+          funds += sellPrice;
+          unsoldClips -=transaction;
+          $('.availableFunds').text(funds);
+          $('.unsoldClips').text(unsoldClips)
+        }
+      };
+
+      function getDemand(){
+        var marketingLevel = parseInt($('.marketingLevel').text());
+        var price = parseFloat($('.pricePerChipClip').text());
+        var marketing = (Math.pow(1.1,(marketingLevel)));
+        var demand = ((.8) * marketing / (price*3));
+         demand = ((demand + (((demand/100))))*100).toFixed(2);
+         return demand;
+      }
+
+      setInterval(function() {
+        setPrice(Math.floor(Math.random() * 2) + 1);
+      }, 5000);
+
+      setInterval(function() {
+        sellClips(Math.floor(.7 * Math.pow(getDemand(), 1.15)));
+      }, 1000);
+    </script>
+</body>
+
+</html>
