@@ -4,10 +4,12 @@
 <head>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="gamescript.js"></script>
   <script>
     function disableButtons() {
       $('#increaseMarketingLevel').prop('disabled', true);
       calculatePublicDemand();
+      setAutoClipperInititalPrice();
     }
   </script>
 
@@ -39,7 +41,7 @@
         <b>Resources</b>
         <hr />Wire: <span class="wireRemaining">1000</span><br />
 
-        <p />Plastic: <span class="plasticRemaining">2000.0</span>
+        <p />Plastic: <span class="plasticRemaining">2000</span>
         <p />
 
         <p />Wire Price: $<span class="wirePrice"></span>5<br />
@@ -59,13 +61,22 @@
         <p /> Public Demand: <span class="publicDemand"></span>%
         <p /> Marketing Level: <span class="marketingLevel">1</span><br /> Cost: $ <span class="increaseMarketingCost">100.00</span>
         <button class="button" id="increaseMarketingLevel">Marketing</button>
+        <p />
 
+        <b>Assets</b>
+        <hr />
+        <span class="autoClippers">
+          <button class="button" onclick="buyAutoClippers()">Buy Auto Clippers</button><br />
+         Auto clipper price: $<span class="autoClipperPrice"></span><br />
+          Auto clippers make chip clips automatically.
+        </span>
 
       </td>
       <td />
     </tr>
 
     <script>
+    var totalClipsSold = 0;
       function calculatePublicDemand() {
         var marketingLevel = parseInt($('.marketingLevel').text());
         var price = parseFloat($('.pricePerChipClip').text());
@@ -97,6 +108,9 @@
 
       $("#raisePricePerClip").click(function() {
         var price = parseFloat($('.pricePerChipClip').text())
+        if($("#lowerPricePerClip").prop('disabled') == true){
+          $("#lowerPricePerClip").prop('disabled', false);
+        }
         $('.pricePerChipClip').text((price + .01).toFixed(2));
         calculatePublicDemand();
       });
@@ -104,12 +118,12 @@
       $("#makeChipClip").click(function() {
         var clipCount = parseInt($('.chipClipCounter').text());
         var wire = parseInt($('.wireRemaining').text());
-        var plastic = parseFloat($('.plasticRemaining').text());
+        var plastic = parseInt($('.plasticRemaining').text());
         var unsoldClips = parseInt($('.unsoldClips').text());
         if (wire != 0 && plastic != 0) {
           $('.chipClipCounter').text(clipCount + 1);
           $('.wireRemaining').text(wire - 1);
-          $('.plasticRemaining').text(plastic - 1.5);
+          $('.plasticRemaining').text(plastic - 2);
           $('.unsoldClips').text(unsoldClips + 1);
         }
       });
@@ -137,23 +151,18 @@
         }
       });
 
-      function setPrice(change) {
-        if (change == 2) {
-          $('.wirePrice').text(Math.floor(Math.random() * 10) + 1);
-          $('.plasticPrice').text(Math.floor(Math.random() * 15) + 1);
-        }
-      };
 
       function sellClips(number) {
         var unsoldClips = parseInt($('.unsoldClips').text());
         var funds = parseFloat($('.availableFunds').text());
-        var transaction = (unsoldClips * getDemand() * .25);
-        var price = parseFloat($('.pricePerChipClip')).text;
+        var transaction = Math.ceil( getDemand() * .25);
+        var price = parseFloat($('.pricePerChipClip').text());
         var sellPrice = transaction * price;
-        if (unsoldClips > 0) {
+        if (unsoldClips > 0 && transaction <= unsoldClips) {
           funds += sellPrice;
-          unsoldClips -=transaction;
-          $('.availableFunds').text(funds);
+          unsoldClips = unsoldClips - transaction;
+          totalClipsSold = totalClipsSold + transaction;
+          $('.availableFunds').text((funds).toFixed(2));
           $('.unsoldClips').text(unsoldClips)
         }
       };
@@ -163,17 +172,17 @@
         var price = parseFloat($('.pricePerChipClip').text());
         var marketing = (Math.pow(1.1,(marketingLevel)));
         var demand = ((.8) * marketing / (price*3));
-         demand = ((demand + (((demand/100))))*100).toFixed(2);
+         demand = (demand + (((demand/100)))).toFixed(2);
          return demand;
       }
 
-      setInterval(function() {
-        setPrice(Math.floor(Math.random() * 2) + 1);
-      }, 5000);
-
-      setInterval(function() {
+      setInterval( function() {
+        var unsoldClips = parseInt($('.unsoldClips').text());
+        if(unsoldClips != 0)
         sellClips(Math.floor(.7 * Math.pow(getDemand(), 1.15)));
       }, 1000);
+
+
     </script>
 </body>
 
