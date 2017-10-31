@@ -1,38 +1,56 @@
-var autoClipperLevel = 0;
 var wirePerChipClip = -1;
 var plasticPerChipClip = -2;
 
 function buyAutoClippers() {
   var availableFunds = parseFloat($('.availableFunds').text());
-  var autoClipperPrice = 10;
-  if (autoClipperLevel == 0 && availableFunds > autoClipperPrice) {
+  autoClipperLevel = parseInt($('.autoClipperLevel').text());
+  var autoClipperPrice = parseInt($('.autoClipperPrice').text());
+  if (autoClipperLevel == 0 && availableFunds >= autoClipperPrice) {
+    autoClipperLevel = 0 + 1;
+    availableFunds = availableFunds - autoClipperPrice;
+    $('.autoClipperLevel').text(autoClipperLevel);
+    $('.availableFunds').text(availableFunds);
+    autoClipperPrice = autoClipperPrice + autoClipperPrice * .25;
+    $('.autoClipperPrice').text(autoClipperPrice);
+  } else if (availableFunds >= autoClipperPrice) {
+    autoClipperLevel = parseInt($('.autoClipperLevel').text());
     autoClipperLevel = autoClipperLevel + 1;
     availableFunds = availableFunds - autoClipperPrice;
     $('.availableFunds').text(availableFunds);
-  } else {
-    autoClipperPrice = ((autoClipperLevel + 1) * 10);
+    $('.autoClipperLevel').text(autoClipperLevel);
     autoClipperPrice = autoClipperPrice + autoClipperPrice * .25;
-    if (autoClipperPrice <= availableFunds) {
-      autoClipperLevel = autoClipperLevel + 1;
-      availableFunds = availableFunds - autoClipperPrice;
-      $('.availableFunds').text(availableFunds);
-    }
+    $('.autoClipperPrice').text(autoClipperPrice);
+  } else {
+    return;
   }
+};
+
+//Calculates the public demand for the selling of clips
+function calculatePublicDemand() {
+  var marketingLevel = parseInt($('.marketingLevel').text());
+  var price = parseFloat($('.pricePerChipClip').text());
+  var marketing = (Math.pow(1.1, (marketingLevel)));
+  var demand = ((.8) * marketing / (price * 3));
+  demand = ((demand + (((demand / 100)))) * 100).toFixed(2);
+  $('.publicDemand').text(demand);
 };
 
 setInterval(function() {
   var wire = parseInt($('.wireRemaining').text());
   var plastic = parseInt($('.plasticRemaining').text());
+  var newChipCounter = parseInt($('.chipClipCounter').text());
+  var newWireRemaining;
+  var newPlasticRemaining;
+  var autoClipperLevel = parseInt($('.autoClipperLevel').text());
   if (autoClipperLevel > 0) {
     var unsoldClips = parseInt($('.unsoldClips').text());
-    if (unsoldClips == 0) {
-      unsoldClips = autoClipperLevel;
-    } else {
-      unsoldClips = unsoldClips + autoClipperLevel;
-    }
-    $('wireRemaining').text(wire + wirePerChipClip * autoClipperLevel);
-    $('plasticRemaining').text(plastic + plasticPerChipClip * autoClipperLevel);
+    unsoldClips = unsoldClips + autoClipperLevel;
+    newWireRemaining = wire + wirePerChipClip * autoClipperLevel;
+    newPlasticRemaining = plastic + plasticPerChipClip * autoClipperLevel;
+    $('.wireRemaining').text(newWireRemaining);
+    $('.plasticRemaining').text(newPlasticRemaining);
     $('.unsoldClips').text(unsoldClips);
+    $('.chipClipCounter').text(newChipCounter + autoClipperLevel)
   }
 }, 1000);
 

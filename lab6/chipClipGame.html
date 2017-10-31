@@ -8,6 +8,7 @@
   <script>
     function disableButtons() {
       $('#increaseMarketingLevel').prop('disabled', true);
+      $('#buyAutoClipper').prop('disabled', true);
       calculatePublicDemand();
       setAutoClipperInititalPrice();
     }
@@ -23,6 +24,23 @@
       margin: 1em 0;
       padding: 0;
     }
+
+    #consoleDiv {
+      float: left;
+      background: black;
+      width: 100%;
+      color: white;
+    }
+
+    .pulsate {
+      animation: pulsate 1s linear infinite;
+    }
+
+    @keyframes pulsate {
+      50% {
+        opacity: 0;
+      }
+    }
   </style>
   <script>
   </script>
@@ -31,8 +49,23 @@
 <body onload="disableButtons()">
   <table>
     <tr>
+      <!-- The code in this table row is courtesy of http://www.decisionproblem.com/paperclips/index2.html -->
+      <div id="consoleDiv">
+
+        <p class="consoleOld">
+          <span>&nbsp;.&nbsp;</span><span id="readout5"></span><br>
+          <span>&nbsp;.&nbsp;</span><span id="readout4"></span><br>
+          <span>&nbsp;.&nbsp;</span><span id="readout3"></span><br>
+          <span>&nbsp;.&nbsp;</span><span id="readout2"></span><br>
+        </p>
+        <p class="console">
+          <span>&nbsp;&gt;&nbsp;</span><span id="readout1">Welcome to Matt's ChipClips</span><span id="cursor" class="pulsate">|</span>
+        </p>
+
+      </div>
+    </tr>
+    <tr>
       <td style="width:50%">
-        <br />
         <h2>Chip Clips Made: <span class="chipClipCounter">0</span></h2>
         <p />
         <hr />
@@ -66,9 +99,8 @@
         <b>Assets</b>
         <hr />
         <span class="autoClippers">
-          <button class="button" onclick="buyAutoClippers()">Buy Auto Clippers</button><br />
-         Auto clipper price: $<span class="autoClipperPrice"></span><br />
-          Auto clippers make chip clips automatically.
+          <button class="button" id='buyAutoClipper' onclick="buyAutoClippers()">Buy Auto Clippers</button><br />
+         Auto clipper price: $<span class="autoClipperPrice"></span><br /> Auto clipper level: <span class="autoClipperLevel">0</span><br /> Auto clippers make chip clips automatically.
         </span>
 
       </td>
@@ -76,25 +108,24 @@
     </tr>
 
     <script>
-    var totalClipsSold = 0;
-      function calculatePublicDemand() {
-        var marketingLevel = parseInt($('.marketingLevel').text());
-        var price = parseFloat($('.pricePerChipClip').text());
-        var marketing = (Math.pow(1.1, (marketingLevel)));
-        var demand = ((.8) * marketing / (price * 3));
-        demand = ((demand + (((demand / 100)))) * 100).toFixed(2);
-        $('.publicDemand').text(demand);
-      };
+      var totalClipsSold = 0;
 
-      $('.availableFunds').change(function() {
+      //Handles buttons disabled or enabled if there is enough money
+      setInterval(function() {
         var funds = parseFloat($('.availableFunds').text());
         var marketingCost = parseFloat($('.increaseMarketingCost').text());
-        if (marketingCost > funds) {
+        var autoClipperPrice = parseFloat($('.autoClipperPrice').text());
+        if (funds >= marketingCost) {
           $('#increaseMarketingLevel').prop('disabled', false);
         } else {
           $('#increaseMarketingLevel').prop('disabled', true);
         }
-      });
+        if (funds >= autoClipperPrice) {
+          $('#buyAutoClipper').prop('disabled', false);
+        } else {
+          $('#buyAutoClipper').prop('disabled', true);
+        }
+      }, 250);
 
       $("#lowerPricePerClip").click(function() {
         var price = parseFloat($('.pricePerChipClip').text())
@@ -108,7 +139,7 @@
 
       $("#raisePricePerClip").click(function() {
         var price = parseFloat($('.pricePerChipClip').text())
-        if($("#lowerPricePerClip").prop('disabled') == true){
+        if ($("#lowerPricePerClip").prop('disabled') == true) {
           $("#lowerPricePerClip").prop('disabled', false);
         }
         $('.pricePerChipClip').text((price + .01).toFixed(2));
@@ -155,7 +186,7 @@
       function sellClips(number) {
         var unsoldClips = parseInt($('.unsoldClips').text());
         var funds = parseFloat($('.availableFunds').text());
-        var transaction = Math.ceil( getDemand() * .25);
+        var transaction = Math.ceil(getDemand() * .25);
         var price = parseFloat($('.pricePerChipClip').text());
         var sellPrice = transaction * price;
         if (unsoldClips > 0 && transaction <= unsoldClips) {
@@ -167,22 +198,20 @@
         }
       };
 
-      function getDemand(){
+      function getDemand() {
         var marketingLevel = parseInt($('.marketingLevel').text());
         var price = parseFloat($('.pricePerChipClip').text());
-        var marketing = (Math.pow(1.1,(marketingLevel)));
-        var demand = ((.8) * marketing / (price*3));
-         demand = (demand + (((demand/100)))).toFixed(2);
-         return demand;
+        var marketing = (Math.pow(1.1, (marketingLevel)));
+        var demand = ((.8) * marketing / (price * 3));
+        demand = (demand + (((demand / 100)))).toFixed(2);
+        return demand;
       }
 
-      setInterval( function() {
+      setInterval(function() {
         var unsoldClips = parseInt($('.unsoldClips').text());
-        if(unsoldClips != 0)
-        sellClips(Math.floor(.7 * Math.pow(getDemand(), 1.15)));
+        if (unsoldClips != 0)
+          sellClips(Math.floor(.7 * Math.pow(getDemand(), 1.15)));
       }, 1000);
-
-
     </script>
 </body>
 
