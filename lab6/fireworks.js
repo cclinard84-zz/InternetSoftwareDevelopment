@@ -1,4 +1,4 @@
-//Courtesy of https://codepen.io/P3R0/pen/yyqdxR with some modifications
+//Courtesy of https://codepen.io/P3R0 with some modifications
 // File: Fireworks.js
 // Date: 10-31-2017
 // For use with chipClipGame.html

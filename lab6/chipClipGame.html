@@ -126,6 +126,7 @@
         }
       }, 250);
 
+      //This function handles the lowers the price per chip clip
       $("#lowerPricePerClip").click(function() {
         var price = parseFloat($('.pricePerChipClip').text())
         if (price == .01) {
@@ -136,6 +137,7 @@
         calculatePublicDemand();
       });
 
+      //This function handles the raising the price per chip clip
       $("#raisePricePerClip").click(function() {
         var price = parseFloat($('.pricePerChipClip').text())
         if ($("#lowerPricePerClip").prop('disabled') == true) {
@@ -145,6 +147,7 @@
         calculatePublicDemand();
       });
 
+      //This function handles the logic for the make chip clip button
       $("#makeChipClip").click(function() {
         var clipCount = parseInt($('.chipClipCounter').text());
         var wire = parseInt($('.wireRemaining').text());
@@ -162,11 +165,14 @@
         }
       });
 
+      //This function handles the buying of a revenue ticker which is not implemented
+      //****NOT IMPLEMENTED ****//
       $("#buyRevenueTicker").click(function() {
         $('.revenuePerSecond').text('Revenue Per Second: $');
         $('.revenuePerSecondTicker').text('0.00');
       });
 
+      //This function handles the logic for buying wire.
       $("#buyWire").click(function() {
         var funds = parseFloat($('.availableFunds').text());
         var wire = parseInt($('.wireRemaining').text());
@@ -176,6 +182,7 @@
         }
       });
 
+      //This function handles the logic for buying plastic.
       $("buyPlastic").click(function() {
         var funds = parseFloat($('.availableFunds').text());
         var plastic = parseFloat($('.plasticRemaining').text());
@@ -185,7 +192,7 @@
         }
       });
 
-
+      //This function calculates how many clips are sold based on demand * .25
       function sellClips(number) {
         var unsoldClips = parseInt($('.unsoldClips').text());
         var funds = parseFloat($('.availableFunds').text());
@@ -201,6 +208,7 @@
         }
       };
 
+      //This function gets the demand of chip clips from the population
       function getDemand() {
         var marketingLevel = parseInt($('.marketingLevel').text());
         var price = parseFloat($('.pricePerChipClip').text());
@@ -210,12 +218,14 @@
         return demand;
       }
 
+      //This function is responsible for calling sellClips each second
       setInterval(function() {
         var unsoldClips = parseInt($('.unsoldClips').text());
         if (unsoldClips != 0)
           sellClips(Math.floor(.7 * Math.pow(getDemand(), 1.15)));
       }, 1000);
 
+      //This function loads the fireworks script to signal a win.
       function loadJS() {
           var js = document.createElement("script");
           js.type = "application/javascript";

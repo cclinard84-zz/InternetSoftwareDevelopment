@@ -6,6 +6,7 @@
 var wirePerChipClip = -1;
 var plasticPerChipClip = -2;
 
+//This function handles all the logic for buying auto clippers
 function buyAutoClippers() {
   var availableFunds = parseFloat($('.availableFunds').text());
   autoClipperLevel = parseInt($('.autoClipperLevel').text());
@@ -40,6 +41,7 @@ function calculatePublicDemand() {
   $('.publicDemand').text(demand);
 };
 
+//This function creates clips based on how many auto clippers you have
 setInterval(function() {
   var wire = parseInt($('.wireRemaining').text());
   var plastic = parseInt($('.plasticRemaining').text());
@@ -59,6 +61,7 @@ setInterval(function() {
   }
 }, 1000);
 
+//This funciton initially sets the price of the autoclippers
 function setAutoClipperInititalPrice() {
   var autoClipperPrice = 10;
   $('.autoClipperPrice').text(autoClipperPrice);
