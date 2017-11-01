@@ -4,13 +4,23 @@
 <head>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="gamescript.js"></script>
+  <script src="gameScript.js"></script>
   <script>
     function disableButtons() {
       $('#increaseMarketingLevel').prop('disabled', true);
       $('#buyAutoClipper').prop('disabled', true);
       calculatePublicDemand();
       setAutoClipperInititalPrice();
+    };
+
+    //Calculates the public demand for the selling of clips
+    function calculatePublicDemand() {
+      var marketingLevel = parseInt($('.marketingLevel').text());
+      var price = parseFloat($('.pricePerChipClip').text());
+      var marketing = (Math.pow(1.1, (marketingLevel)));
+      var demand = ((.8) * marketing / (price * 3));
+      demand = ((demand + (((demand / 100)))) * 100).toFixed(2);
+      $('.publicDemand').text(demand);
     };
   </script>
 
@@ -74,9 +84,9 @@
         <p />Plastic: <span class="plasticRemaining">2000</span>
         <p />
 
-        <p />Wire Price: $<span class="wirePrice"></span>5<br />
+        <p />Wire Price: $<span class="wirePrice">5</span><br />
         <button class="button" id="buyWire">Buy Wire</button>
-        <p />Plastic Price: $<span class="plasticPrice"></span>10<br />
+        <p />Plastic Price: $<span class="plasticPrice">10</span><br />
         <button class="button" id="buyPlastic">Buy Plastic</button>
 
         <p />
@@ -90,7 +100,7 @@
         <span class="Unsold Inventory">Unsold Inventory: </span><span class="unsoldClips">0</span>
         <p /> Public Demand: <span class="publicDemand"></span>%
         <p /> Marketing Level: <span class="marketingLevel">1</span><br /> Cost: $ <span class="increaseMarketingCost">100.00</span>
-        <button class="button" id="increaseMarketingLevel">Marketing</button>
+        <button class="button" id="increaseMarketingLevel" onclick="increaseMarketingLevel()">Marketing</button>
         <p />
 
         <b>Assets</b>
@@ -126,6 +136,19 @@
         }
       }, 250);
 
+      function increaseMarketingLevel(){
+        if($('#increaseMarketingLevel').prop('disabled')){
+          return;
+        }
+        var marketingLevel = parseInt($('.marketingLevel').text());
+        var marketingLevelCost = parseInt($('.increaseMarketingCost').text());
+        var funds = parseFloat($('.availableFunds').text());
+        var newMCost = marketingLevelCost + 100;
+        $('.marketingLevel').text(marketingLevel + 1);
+        $('.increaseMarketingCost').text(newMCost);
+        $('.availableFunds').text(funds - marketingLevelCost);
+      };
+
       //This function handles the lowers the price per chip clip
       $("#lowerPricePerClip").click(function() {
         var price = parseFloat($('.pricePerChipClip').text())
@@ -153,15 +176,15 @@
         var wire = parseInt($('.wireRemaining').text());
         var plastic = parseInt($('.plasticRemaining').text());
         var unsoldClips = parseInt($('.unsoldClips').text());
-        if(clipCount >= 100){
-            $('#makeChipClip').prop('disabled', true);
-          loadJS();
-        }
         if (wire != 0 && plastic != 0) {
           $('.chipClipCounter').text(clipCount + 1);
           $('.wireRemaining').text(wire - 1);
           $('.plasticRemaining').text(plastic - 2);
           $('.unsoldClips').text(unsoldClips + 1);
+        }
+        if(clipCount >= 100){
+            $('#makeChipClip').prop('disabled', true);
+          loadJS();
         }
       });
 
@@ -176,18 +199,20 @@
       $("#buyWire").click(function() {
         var funds = parseFloat($('.availableFunds').text());
         var wire = parseInt($('.wireRemaining').text());
+        var wirePrice = parseInt($('.wirePrice').text());
         if (funds >= wirePrice) {
-          $('.availableFunds').text(funds -= wirePrice);
+          $('.availableFunds').text(funds - wirePrice);
           $('.wireRemaining').text(wire + 1000);
         }
       });
 
       //This function handles the logic for buying plastic.
-      $("buyPlastic").click(function() {
+      $("#buyPlastic").click(function() {
         var funds = parseFloat($('.availableFunds').text());
         var plastic = parseFloat($('.plasticRemaining').text());
+        var plasticPrice = parseInt($('.plasticPrice').text());
         if (funds >= plasticPrice) {
-          $('.availableFunds').text(funds -= wirePrice);
+          $('.availableFunds').text(funds - plasticPrice);
           $('.plasticRemaining').text(plastic + 1000);
         }
       });
@@ -199,6 +224,11 @@
         var transaction = Math.ceil(getDemand() * .25);
         var price = parseFloat($('.pricePerChipClip').text());
         var sellPrice = transaction * price;
+        var clipCount = parseInt($('.chipClipCounter').text());
+        if(clipCount  >= 100 && $('#makeChipClip').prop('disabled') == false){
+          $('#makeChipClip').prop('disabled', true);
+          loadJS();
+        }
         if (unsoldClips > 0 && transaction <= unsoldClips) {
           funds += sellPrice;
           unsoldClips = unsoldClips - transaction;

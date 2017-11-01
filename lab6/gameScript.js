@@ -31,16 +31,6 @@ function buyAutoClippers() {
   }
 };
 
-//Calculates the public demand for the selling of clips
-function calculatePublicDemand() {
-  var marketingLevel = parseInt($('.marketingLevel').text());
-  var price = parseFloat($('.pricePerChipClip').text());
-  var marketing = (Math.pow(1.1, (marketingLevel)));
-  var demand = ((.8) * marketing / (price * 3));
-  demand = ((demand + (((demand / 100)))) * 100).toFixed(2);
-  $('.publicDemand').text(demand);
-};
-
 //This function creates clips based on how many auto clippers you have
 setInterval(function() {
   var wire = parseInt($('.wireRemaining').text());
