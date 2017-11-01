@@ -1,3 +1,8 @@
+// File: gameScript.js
+// Author: Matt Clinard
+// Date: 10-31-2017
+// For use with chipClipGame.html
+
 var wirePerChipClip = -1;
 var plasticPerChipClip = -2;
 

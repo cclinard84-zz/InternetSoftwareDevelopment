@@ -11,7 +11,7 @@
       $('#buyAutoClipper').prop('disabled', true);
       calculatePublicDemand();
       setAutoClipperInititalPrice();
-    }
+    };
   </script>
 
   <title>Matt's Chip Clip Game</title>
@@ -49,9 +49,7 @@
 <body onload="disableButtons()">
   <table>
     <tr>
-      <!-- The code in this table row is courtesy of http://www.decisionproblem.com/paperclips/index2.html -->
       <div id="consoleDiv">
-
         <p class="consoleOld">
           <span>&nbsp;.&nbsp;</span><span id="readout5"></span><br>
           <span>&nbsp;.&nbsp;</span><span id="readout4"></span><br>
@@ -61,7 +59,6 @@
         <p class="console">
           <span>&nbsp;&gt;&nbsp;</span><span id="readout1">Welcome to Matt's ChipClips</span><span id="cursor" class="pulsate">|</span>
         </p>
-
       </div>
     </tr>
     <tr>
@@ -102,10 +99,12 @@
           <button class="button" id='buyAutoClipper' onclick="buyAutoClippers()">Buy Auto Clippers</button><br />
          Auto clipper price: $<span class="autoClipperPrice"></span><br /> Auto clipper level: <span class="autoClipperLevel">0</span><br /> Auto clippers make chip clips automatically.
         </span>
-
       </td>
-      <td />
+      <td id="fireworks">
+        <canvas id="fireworksCanvas"></canvas>
+      </td>
     </tr>
+
 
     <script>
       var totalClipsSold = 0;
@@ -151,6 +150,10 @@
         var wire = parseInt($('.wireRemaining').text());
         var plastic = parseInt($('.plasticRemaining').text());
         var unsoldClips = parseInt($('.unsoldClips').text());
+        if(clipCount >= 100){
+            $('#makeChipClip').prop('disabled', true);
+          loadJS();
+        }
         if (wire != 0 && plastic != 0) {
           $('.chipClipCounter').text(clipCount + 1);
           $('.wireRemaining').text(wire - 1);
@@ -212,6 +215,13 @@
         if (unsoldClips != 0)
           sellClips(Math.floor(.7 * Math.pow(getDemand(), 1.15)));
       }, 1000);
+
+      function loadJS() {
+          var js = document.createElement("script");
+          js.type = "application/javascript";
+          js.src = "fireworks.js";
+          document.getElementById("fireworks").appendChild(js);
+      };
     </script>
 </body>
 
